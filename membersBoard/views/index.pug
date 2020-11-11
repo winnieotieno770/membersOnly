@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  div.d-flex.justify-content-center.mt-3.mb-3
+    a.btn.btn-success(href="/new-message") Create New Message
+  .container-fluid.d-flex.flex-column.align-items-center
+    if messages
+      for message in messages
+        .card.mb-3.message
+          .card-body
+            if user && user.status === "admin"
+              - let url = `/delete/${message._id}`
+              form(action=url method="POST")
+                button(type="submit" class="close" aria-label="Close")
+                  span(aria-hidden="true") &times
+            h5.card-title= message.title
+            p.card-text= message.text
+          .card-footer
+            p.mt-0.mb-1.font-italic= user === undefined || user.status === "outsider" ? "Author hidden" : (message.author.username + " aka "+ message.author.fullname)
+            p.mt-0.mb-0.text-muted= message.date

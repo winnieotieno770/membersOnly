@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h3.mt-3.mb-3.text-center Enter the secret code and join the club
+  form.mx-auto(action='' method='POST' style="width:25rem")
+    .form-group
+      label(for='secretCode') Secret Code
+      input.form-control(name='secretCode' placeholder='Secret Code' type='text')
+    button.btn.btn-dark(type="submit") Submit

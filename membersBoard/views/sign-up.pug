@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h2.text-center.mt-3.mb-3= title
+  form.mx-auto(action='' method='POST' style="width:25rem")
+    .form-group
+      label(for='firstname') First Name
+      input.form-control(name='firstname' type='text' value=(!user ? "" : user.firstname))
+    .form-group
+      label(for='lastname') Last Name
+      input.form-control(name='lastname' type='text' value=(!user ? "" : user.lastname))
+    .form-group
+      label(for='username') Username
+      input.form-control(name='username' type='text' value=(!user ? "" : user.username))
+    .form-group
+      label(for='password') Password
+      input.form-control(name='password' type='password')
+    .form-group
+      label(for='passwordConfirmation') Confirm Password
+      input.form-control(name='passwordConfirmation' type='password')
+    button.btn.btn-dark.mb-3(type="submit") Sign Up
+  if errors
+    for error in errors
+      .alert.alert-danger.mx-auto(role="alert" style="width:25rem")!= error.msg
